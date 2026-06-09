@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portfolio | Modern & Minimal</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              white: '#FFFFFF',
+              lightGray: '#F8FAFC',
+              blue: '#3B82F6',
+              dark: '#1E293B',
+              muted: '#64748B'
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 40px -10px rgba(30, 41, 59, 0.05)',
+            'focus-ring': '0 0 0 4px rgba(59, 130, 246, 0.15)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FFFFFF;
+      color: #1E293B;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Linear/Apple Custom Easing Physics */
+    .smooth-transition {
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Scroll Animation Target State */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Input States */
+    .interactive-input {
+      background-color: #F8FAFC;
+      border: 1px solid transparent;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .interactive-input:focus {
+      background-color: #FFFFFF;
+      border-color: #3B82F6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+      outline: none;
+    }
+
+    /* Custom Timeline Node Style */
+    .timeline-line::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 16px;
+      width: 2px;
+      background-color: #F1F5F9;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-blue/10 selection:text-brand-blue">
+
+  <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100/80">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="text-lg font-bold tracking-tight text-brand-dark flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-blue"></span> ******
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-muted">
+        <a href="#about" class="hover:text-brand-dark smooth-transition">About</a>
+        <a href="#skills" class="hover:text-brand-dark smooth-transition">Skills</a>
+        <a href="#projects" class="hover:text-brand-dark smooth-transition">Projects</a>
+        <a href="#education" class="hover:text-brand-dark smooth-transition">Timeline</a>
+        <a href="#achievements" class="hover:text-brand-dark smooth-transition">Achievements</a>
+      </div>
+      <div>
+        <a href="#contact" class="px-4 py-2 bg-brand-dark text-white text-xs font-semibold rounded-lg hover:bg-brand-blue smooth-transition shadow-sm">
+          Connect
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero" class="pt-40 pb-24 md:py-48 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+    <div class="max-w-xl space-y-6 order-2 md:order-1">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-lightGray text-xs font-medium text-brand-blue border border-slate-100">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse"></span> Open for Internships 2026
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight text-brand-dark">
+        Hi, I'm ****. <br/>Designing digital tools for tomorrow.
+      </h1>
+      <p class="text-base md:text-lg text-brand-muted leading-relaxed">
+        I am a Full-Stack Developer & UI/UX Designer specialized in writing clean, modular code and translating conceptual complexity into seamless user interfaces.
+      </p>
+      <div class="pt-4 flex items-center gap-4">
+        <a href="#" class="px-5 py-3 bg-brand-blue text-white font-medium text-sm rounded-xl hover:bg-blue-600 smooth-transition shadow-soft flex items-center gap-2">
+          Download Resume <i data-lucide="arrow-down-to-line" class="w-4 h-4"></i>
+        </a>
+        <a href="#contact" class="px-5 py-3 bg-brand-lightGray border border-slate-100 text-brand-dark font-medium text-sm rounded-xl hover:bg-slate-100 smooth-transition flex items-center gap-2">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+    <div class="w-64 h-64 md:w-80 md:h-80 rounded-[2.5rem] bg-brand-lightGray border border-slate-100 p-4 order-1 md:order-2 flex items-center justify-center shadow-soft">
+      <div class="w-full h-full rounded-[2rem] bg-slate-200 overflow-hidden relative group">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Student Profile" class="w-full h-full object-cover grayscale contrast-115 mix-blend-multiply group-hover:scale-105 group-hover:grayscale-0 smooth-transition">
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-24 bg-brand-lightGray border-y border-slate-100 px-6">
+    <div class="max-w-6xl mx-auto reveal">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div>
+          <h2 class="text-xs font-bold tracking-widest text-brand-blue uppercase">01 // Architecture</h2>
+          <p class="text-2xl font-bold text-brand-dark mt-2">About Me</p>
+        </div>
+        <div class="md:col-span-2 space-y-6 text-brand-muted leading-relaxed text-sm md:text-base">
+          <p>
+            Currently pursuing my Bachelor's degree in Computer Science, I bridge the gap between architectural logic and human-centered interaction paradigms. I approach modern systems building through deep experimentation and refined visual executions.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 text-brand-dark">
+            <div class="p-5 bg-white rounded-2xl border border-slate-100/50 shadow-soft">
+              <h3 class="font-semibold text-sm flex items-center gap-2 mb-2 text-brand-blue">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education Focus
+              </h3>
+              <p class="text-xs text-brand-muted">Specializing in Advanced Data Structures, Human-Computer Interaction, and Distributed Cloud Computing deployments.</p>
+            </div>
+            <div class="p-5 bg-white rounded-2xl border border-slate-100/50 shadow-soft">
+              <h3 class="font-semibold text-sm flex items-center gap-2 mb-2 text-brand-blue">
+                <i data-lucide="target" class="w-4 h-4"></i> Career Vector
+              </h3>
+              <p class="text-xs text-brand-muted">Aiming to integrate engineering teams building functional, lightning-fast developer tooling and user products.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-24 px-6 max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-16 reveal">
+      <h2 class="text-xs font-bold tracking-widest text-brand-blue uppercase">02 // Capability</h2>
+      <p class="text-3xl font-bold text-brand-dark mt-2">Technical Matrix</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft hover:-translate-y-1 smooth-transition flex flex-col justify-between group reveal">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-dark group-hover:text-brand-blue smooth-transition">
+            <i data-lucide="code-2" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-base mt-4 text-brand-dark">HTML5 Engine</h3>
+          <p class="text-xs text-brand-muted mt-1">Semantic structuring, dynamic layouts, programmatic microdata optimization.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-1 rounded-full mt-6 overflow-hidden">
+          <div class="bg-brand-blue h-full w-[95%] rounded-full"></div>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft hover:-translate-y-1 smooth-transition flex flex-col justify-between group reveal">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-dark group-hover:text-brand-blue smooth-transition">
+            <i data-lucide="paint-bucket" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-base mt-4 text-brand-dark">Modern CSS & Tailwind</h3>
+          <p class="text-xs text-brand-muted mt-1">Declarative responsive design architectures, precise grid control layouts, keyframe physics.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-1 rounded-full mt-6 overflow-hidden">
+          <div class="bg-brand-blue h-full w-[90%] rounded-full"></div>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft hover:-translate-y-1 smooth-transition flex flex-col justify-between group reveal">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-dark group-hover:text-brand-blue smooth-transition">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-base mt-4 text-brand-dark">JavaScript (ES6+)</h3>
+          <p class="text-xs text-brand-muted mt-1">Asynchronous process management, state tracking computations, advanced DOM pipelines.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-1 rounded-full mt-6 overflow-hidden">
+          <div class="bg-brand-blue h-full w-[88%] rounded-full"></div>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft hover:-translate-y-1 smooth-transition flex flex-col justify-between group reveal">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-dark group-hover:text-brand-blue smooth-transition">
+            <i data-lucide="atom" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-base mt-4 text-brand-dark">React Ecosystem</h3>
+          <p class="text-xs text-brand-muted mt-1">Component-driven engineering patterns, custom hooks reactivity, Virtual DOM state sync.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-1 rounded-full mt-6 overflow-hidden">
+          <div class="bg-brand-blue h-full w-[85%] rounded-full"></div>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft hover:-translate-y-1 smooth-transition flex flex-col justify-between group reveal">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-dark group-hover:text-brand-blue smooth-transition">
+            <i data-lucide="server" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-base mt-4 text-brand-dark">Node.js Backends</h3>
+          <p class="text-xs text-brand-muted mt-1">RESTful interface building, system-level networking, database schema abstraction layer management.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-1 rounded-full mt-6 overflow-hidden">
+          <div class="bg-brand-blue h-full w-[80%] rounded-full"></div>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft hover:-translate-y-1 smooth-transition flex flex-col justify-between group reveal">
+        <div>
+          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-brand-dark group-hover:text-brand-blue smooth-transition">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-base mt-4 text-brand-dark">UI/UX Layout Protocol</h3>
+          <p class="text-xs text-brand-muted mt-1">Hi-fi logic wireframing, systemic type scales mapping, micro-interactions structure design.</p>
+        </div>
+        <div class="w-full bg-slate-100 h-1 rounded-full mt-6 overflow-hidden">
+          <div class="bg-brand-blue h-full w-[92%] rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-24 bg-brand-lightGray border-y border-slate-100 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
+        <div>
+          <h2 class="text-xs font-bold tracking-widest text-brand-blue uppercase">03 // Production</h2>
+          <p class="text-3xl font-bold text-brand-dark mt-2">Selected Deployments</p>
+        </div>
+        <p class="text-sm text-brand-muted max-w-xs mt-2 md:mt-0">A curated matrix of academic pipelines and interface solutions built end-to-end.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft group reveal">
+          <div class="h-52 bg-slate-100 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="Aether OS" class="w-full h-full object-cover group-hover:scale-105 smooth-transition">
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">React</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">Tailwind</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">Node.js</span>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark">Aether Data Dashboard</h3>
+            <p class="text-xs text-brand-muted leading-relaxed">Real-time analytical framework telemetry node syncing processing metrics smoothly across dynamic dashboard instances.</p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue hover:text-blue-600 transition-colors">
+              View Project Live <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft group reveal">
+          <div class="h-52 bg-slate-100 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Zenix Platform" class="w-full h-full object-cover group-hover:scale-105 smooth-transition">
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">JavaScript</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">CSS Grid</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">Figma</span>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark">Zenix E-Commerce Concept</h3>
+            <p class="text-xs text-brand-muted leading-relaxed">High-end architecture model engineered for luxury retail brands utilizing performant visual state transition loops.</p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue hover:text-blue-600 transition-colors">
+              View Project Live <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft group reveal">
+          <div class="h-52 bg-slate-100 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600" alt="Crypt Vault" class="w-full h-full object-cover group-hover:scale-105 smooth-transition">
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">Node.js</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">REST API</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">MongoDB</span>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark">Crypt Vault API Core</h3>
+            <p class="text-xs text-brand-muted leading-relaxed">Secure data locker API featuring custom data token serialization middleware layers and strict authentication systems.</p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue hover:text-blue-600 transition-colors">
+              View Project Live <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-soft group reveal">
+          <div class="h-52 bg-slate-100 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1541462608141-ad4979e408c9?auto=format&fit=crop&q=80&w=600" alt="Chronos Interface" class="w-full h-full object-cover group-hover:scale-105 smooth-transition">
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">UI/UX Design</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">Figma Suite</span>
+              <span class="px-2 py-0.5 rounded bg-brand-lightGray text-[10px] font-medium text-brand-muted uppercase tracking-wider">Prototyping</span>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark">Chronos Productivity Design</h3>
+            <p class="text-xs text-brand-muted leading-relaxed">Deep-dive desktop application framework structural modeling mapping productivity graphs with ultra-minimal noise.</p>
+            <a href="#" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue hover:text-blue-600 transition-colors">
+              View Project Live <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="py-24 px-6 max-w-3xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <h2 class="text-xs font-bold tracking-widest text-brand-blue uppercase">04 // Chronology</h2>
+      <p class="text-3xl font-bold text-brand-dark mt-2">Academic Roadmap</p>
+    </div>
+
+    <div class="relative space-y-12 timeline-line">
+      <div class="relative pl-10 group reveal">
+        <div class="absolute left-0 w-[34px] h-[34px] rounded-full bg-white border-2 border-brand-blue flex items-center justify-center z-10 transition-transform group-hover:scale-110 smooth-transition shadow-sm">
+          <i data-lucide="book-open" class="w-3.5 h-3.5 text-brand-blue"></i>
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-mono font-bold tracking-wider text-brand-blue uppercase">2023 — Present</span>
+          <h3 class="text-base font-bold text-brand-dark">B.S. Computer Science Engineering</h3>
+          <p class="text-xs font-medium text-brand-muted">Apex University Engineering Lab</p>
+          <p class="text-xs text-brand-muted pt-2 leading-relaxed">Focusing heavily on algorithm optimizations, programmatic lifecycle paradigms, and high-performance framework deployments.</p>
+        </div>
+      </div>
+
+      <div class="relative pl-10 group reveal">
+        <div class="absolute left-0 w-[34px] h-[34px] rounded-full bg-white border-2 border-slate-200 flex items-center justify-center z-10 transition-transform group-hover:scale-110 group-hover:border-brand-blue smooth-transition shadow-sm">
+          <i data-lucide="award" class="w-3.5 h-3.5 text-brand-muted group-hover:text-brand-blue smooth-transition"></i>
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-mono font-bold tracking-wider text-brand-muted uppercase">December 2025</span>
+          <h3 class="text-base font-bold text-brand-dark">Advanced React Framework Engineer</h3>
+          <p class="text-xs font-medium text-brand-muted">Meta Professional Protocols</p>
+          <p class="text-xs text-brand-muted pt-2 leading-relaxed">Validating advanced component synchronization states, context rendering engine rules, and strict render hooks logic.</p>
+        </div>
+      </div>
+
+      <div class="relative pl-10 group reveal">
+        <div class="absolute left-0 w-[34px] h-[34px] rounded-full bg-white border-2 border-slate-200 flex items-center justify-center z-10 transition-transform group-hover:scale-110 group-hover:border-brand-blue smooth-transition shadow-sm">
+          <i data-lucide="binary" class="w-3.5 h-3.5 text-brand-muted group-hover:text-brand-blue smooth-transition"></i>
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-mono font-bold tracking-wider text-brand-muted uppercase">August 2024</span>
+          <h3 class="text-base font-bold text-brand-dark">Data Structures & Applied Systems</h3>
+          <p class="text-xs font-medium text-brand-muted">Princeton Engineering Catalog</p>
+          <p class="text-xs text-brand-muted pt-2 leading-relaxed">Rigorous performance mapping covering space-time algorithm complexities, complex matrix sorting nodes, and index arrays graphs.</p>
+        </div>
+      </div>
+
+      <div class="relative pl-10 group reveal">
+        <div class="absolute left-0 w-[34px] h-[34px] rounded-full bg-white border-2 border-slate-200 flex items-center justify-center z-10 transition-transform group-hover:scale-110 group-hover:border-brand-blue smooth-transition shadow-sm">
+          <i data-lucide="milestone" class="w-3.5 h-3.5 text-brand-muted group-hover:text-brand-blue smooth-transition"></i>
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-mono font-bold tracking-wider text-brand-muted uppercase">2021 — 2023</span>
+          <h3 class="text-base font-bold text-brand-dark">High School Diploma (Science & Math Major)</h3>
+          <p class="text-xs font-medium text-brand-muted">St. Jude Academy Laboratory</p>
+          <p class="text-xs text-brand-muted pt-2 leading-relaxed">Graduated with absolute top distinction, anchoring high proficiency scores in applied linear math formulas and physics computation protocols.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements" class="py-24 bg-brand-lightGray border-y border-slate-100 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-xl mx-auto mb-16 reveal">
+        <h2 class="text-xs font-bold tracking-widest text-brand-blue uppercase">05 // Distinctions</h2>
+        <p class="text-3xl font-bold text-brand-dark mt-2">Awards & Milestones</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft reveal">
+          <div class="text-brand-blue mb-4"><i data-lucide="trophy" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-sm text-brand-dark">1st Place Hackathon</h3>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed">Outpaced 45 software engineering squads at HackNova 2025, structuring an optimized server-side logistics pipeline.</p>
+        </div>
+
+        <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft reveal delay-100">
+          <div class="text-brand-blue mb-4"><i data-lucide="medal" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-sm text-brand-dark">Academic Excellence Award</h3>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed">Ranked directly within the top 2% of the computer engineering department catalog across 4 sequential semesters.</p>
+        </div>
+
+        <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft reveal delay-200">
+          <div class="text-brand-blue mb-4"><i data-lucide="scroll" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-sm text-brand-dark">AWS Developer Badge</h3>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed">Formally processed and certified in architectural cluster routing models, micro-service node deployments, and safety layers.</p>
+        </div>
+
+        <div class="p-6 bg-white border border-slate-100 rounded-2xl shadow-soft reveal delay-300">
+          <div class="text-brand-blue mb-4"><i data-lucide="star" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-sm text-brand-dark">Open Source Pillar</h3>
+          <p class="text-xs text-brand-muted mt-2 leading-relaxed">Integrated core UI structural component extensions directly down into major global community developer code libraries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-24 px-6 max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="reveal">
+        <h2 class="text-xs font-bold tracking-widest text-brand-blue uppercase">06 // Interface</h2>
+        <p class="text-3xl font-bold text-brand-dark mt-2">Let's Connect</p>
+        <p class="text-xs text-brand-muted mt-4 leading-relaxed">
+          Drop me a line for internship roles, independent software projects, or structural technology exploration.
+        </p>
+      </div>
+
+      <form class="md:col-span-2 space-y-5 reveal">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-bold tracking-wider text-brand-dark uppercase">Your Name</label>
+            <input type="text" placeholder="Jane Doe" class="w-full text-xs p-3 rounded-lg interactive-input text-brand-dark">
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-bold tracking-wider text-brand-dark uppercase">Email Address</label>
+            <input type="email" placeholder="jane@domain.com" class="w-full text-xs p-3 rounded-lg interactive-input text-brand-dark">
+          </div>
+        </div>
+        <div class="space-y-1.5">
+          <label class="text-[10px] font-bold tracking-wider text-brand-dark uppercase">Message Core</label>
+          <textarea rows="4" placeholder="Let's build something remarkable..." class="w-full text-xs p-3 rounded-lg interactive-input text-brand-dark resize-none"></textarea>
+        </div>
+        <button type="button" class="w-full py-3 bg-brand-dark text-white font-semibold text-xs tracking-widest uppercase rounded-lg hover:bg-brand-blue smooth-transition shadow-soft">
+          Dispatch Transmission
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-100 bg-white py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <p class="text-xs font-mono text-brand-muted">
+        Copyright © 2026 Alex.Dev. System Architecture Preserved.
+      </p>
+      <div class="flex items-center gap-6 text-brand-muted">
+        <a href="#" class="hover:text-brand-blue smooth-transition" aria-label="GitHub Gateway">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+        <a href="#" class="hover:text-brand-blue smooth-transition" aria-label="LinkedIn Gateway">
+          <i data-lucide="linkedin" class="w-4 h-4"></i>
+        </a>
+        <a href="#" class="hover:text-brand-blue smooth-transition" aria-label="Email Node Link">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Vector Icons Node Architecture
+    lucide.createIcons();
+
+    // IntersectionObserver API for Premium Scroll Animations
+    const animOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.12
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target); // Trigger logic strictly once for optimization
+        }
+      });
+    }, animOptions);
+
+    document.querySelectorAll('.reveal').forEach((el) => {
+      scrollObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
